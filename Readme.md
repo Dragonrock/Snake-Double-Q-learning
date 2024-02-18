@@ -16,6 +16,10 @@ Features
 4. **Visualizations:** Track the AI's progress with charts that visualize performance, action distribution, and rewards.
 te the reward mechanism that guides the AI's learning.
 
+Why Simple Q-Learning Doesn't Work
+
+Simple Q-Learning implementations often face challenges in the Snake game due to the sheer complexity of potential game states. Every combination of the snake's position, food location, and the presence or absence of obstacles creates a unique state.  This vast number of states can overwhelm Q-tables, which store values for each state-action pair.  Additionally, the random repositioning of food after each consumption makes it difficult for the AI to develop consistent strategies.  Moreover, if rewards are only given when the snake eats food,  feedback might be too infrequent for effective learning, especially early in training. This combination of factors can lead to slow convergence or even the complete failure of the algorithm to find a good solution.
+
 
 **License**
 MIT License: [https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/mit/) 
