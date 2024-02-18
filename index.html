@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snake Game</title>
+    <style>
+body {
+    display: flex;
+    flex-direction: column; /* Arrange elements vertically */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #222; 
+    color: #eee; 
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+canvas {
+    background-color: #000; 
+    border: 5px solid limegreen;
+    box-shadow: 0 0 10px 5px rgba(0, 255, 0, 0.6);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px; /* Some space between title and canvas */
+    font-size: 3em;
+    text-shadow: 0 0 5px limegreen; 
+}
+#restartButton {
+  background-color: #4CAF50;  /* Green background */
+  color: white;             
+  padding: 12px 24px;       
+  border: none;            
+  border-radius: 6px;     
+  cursor: pointer;           
+  font-size: 16px;            /* Mouse cursor changes to pointer on hover */
+}
+
+#restartButton:hover {
+  background-color: #45a049;  /* Darker green on hover */
+}
+#scoreDisplay {
+    font-family: Arial, sans-serif;
+    position: absolute;
+    top: 1em; 
+    left: 1em;
+    margin-bottom: 20px; /* Some space between title and canvas */
+    font-size: 2em;
+    text-shadow: 0 0 5px rgb(18, 106, 117);
+}
+#hscoreDisplay {
+    font-family: Arial, sans-serif;
+    position: absolute;
+    top: 3em; 
+    left: 1em;
+    margin-bottom: 20px; /* Some space between title and canvas */
+    font-size: 2em;
+    text-shadow: 0 0 5px rgb(18, 106, 117);
+}
+#startRLButton {
+  background-color: #008CBA; /* Blue  */
+  color: white;             
+  padding: 12px 24px;       
+  border: none;            
+  border-radius: 6px;     
+  cursor: pointer;           
+  font-size: 16px;           
+}
+
+#startRLButton:hover {
+  background-color: #006a8a; /* Darker blue on hover */
+}
+
+#iterationCounter {
+    margin-bottom: 20px; /* Some space between title and canvas */
+    text-shadow: 0 0 5px rgb(120, 18, 160);
+    font-family: Arial, sans-serif;
+ 
+}
+#q-learning-viz {
+    width: 200px; /* Adjust as needed */
+    margin: 0 auto;  /* Center the visualization */
+    font-family: sans-serif; 
+}
+
+#q-table-display, #statistics {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+#q-learning-viz h2 {
+    text-align: center;
+    color: #333; /* Dark gray */
+}
+
+/* Assuming you'll make a 'table' element for the Q-Table */
+#q-table-display table {
+    border-collapse: collapse;
+}
+
+#q-table-display td, #q-table-display th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#game-and-charts { 
+    display: flex; /* Use flexbox for layout */
+}
+
+#charts-container {
+    position: fixed;
+    left: 0px;
+    top: 240px;
+    width: 20%; /* Adjust as needed */
+}
+
+#statistics {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 1.5em;
+    text-shadow: 0 0 5px #333;
+    font-family: Arial, sans-serif;
+}
+
+#statistics button {
+    margin-bottom: 10px;
+}
+
+#statistics div {
+    margin-bottom: 10px;
+}
+
+#gameBoard {
+    float: left;
+}
+
+#statistics {
+    margin-left: 20px;
+}
+</style>
+
+</head>
+<body>
+
+
+    </style>
+
+</head>
+<body>
+    <h1>Snake Game        
+    </h1>
+    <canvas id="gameBoard" width="400" height="400"></canvas>
+    <div id="scoreDisplay">Score: 0 </div> 
+    <div id="hscoreDisplay"> High Score: <span id="highscore">0</span></div> 
+
+    <div id="game-and-charts">
+
+        <div id="charts-container"> 
+            <h2><center>Q-Learning Visualization</center></h2> 
+
+            <canvas id="performanceChart"></canvas>
+            <canvas id="actionDistributionChart"></canvas>
+            <canvas id="rewardsChart"></canvas>
+            
+        </div>
+
+    </div>
+
+    <div id="statistics">
+        <div>
+            <label for="alphaSlider">Alpha:</label>
+            <input type="range" id="alphaSlider" min="0" max="1" step="0.05" value="0.1">
+            <span id="alphaValue">0.10</span> 
+          </div>
+          <div>
+            <label for="epsilonSlider">Epsilon:</label>
+            <input type="range" id="epsilonSlider" min="0" max="1" step="0.05" value="0.1">
+            <span id="sepsilonValue">0.10</span> 
+          </div>
+          <div>
+            <label for="gammaSlider">Gamma:</label>
+            <input type="range" id="gammaSlider" min="0" max="1" step="0.05" value="0.9">
+            <span id="gammaValue">0.90</span> 
+          </div>
+          <button id="startRLButton">Start Training</button>
+        <button id="restartButton">Restart</button>     
+
+
+        <div id="iterationCounter">Iteration: 0</div>
+        <div id="epsilonValue">Epsilon: 1.0</div> </div>
+</div>
+
+    
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script> 
+</body>
+</html>
